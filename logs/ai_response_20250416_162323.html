@@ -1,0 +1,12 @@
+<p class='step-info'>Creating Collection ....</p>
+<p class='step-success'>✅ Collection &#x27;Wise Portal Collection_DJ23&#x27; created successfully!</p>
+<p class='step-info'>collection_id=coll_46bd944984a941269dec40324e0fe998</p>
+<p class='step-info'>🧠 Attempting to generate database schema using Backstract AI ....</p>
+<p class='step-info'>📄 Prompt for Backstract AI generated.</p>
+<p class='step-info'>⏳ Backstract AI is generating schema for your application ......</p>
+<p class='step-success'>✅ Schema generated successfully.</p>
+<div class='reasoning-output'><strong>Reasoning:</strong><pre><code>This database design models a student registration portal. We start with &#x27;students&#x27; who are the main actors using the portal. To organize studies, we have &#x27;departments&#x27; (like &#x27;Computer Science&#x27; or &#x27;History&#x27;). Each department offers various &#x27;courses&#x27; (like &#x27;Introduction to Programming&#x27;). Courses aren&#x27;t always available, so we have &#x27;semesters&#x27; (like &#x27;Fall 2024&#x27;) to track academic terms. When a specific course is offered in a particular semester by a teacher, we call that a &#x27;course_section&#x27;. This requires knowing the &#x27;instructors&#x27; who teach these sections. A &#x27;course_section&#x27; links a &#x27;course&#x27;, a &#x27;semester&#x27;, and an &#x27;instructor&#x27;. Finally, the core action is &#x27;registrations&#x27;, which records which &#x27;student&#x27; has signed up for which &#x27;course_section&#x27;. We also added a &#x27;grades&#x27; table to store the outcome of a student&#x27;s registration in a course section once the semester is complete. Each connection (edge) represents how these pieces of information relate, for example, showing which department offers a course, or which student is registered for a specific section.</code></pre></div>
+<p class='step-info'>💾 Saving schema to your collection&#x27;s database...</p>
+<p class='step-success'>✅ Schema saved to database.</p>
+<p class='step-info'>⚙️ Attempting to generate API endpoints for your collection...</p>
+<p class='step-success'>✅ API endpoints generated successfully!</p>

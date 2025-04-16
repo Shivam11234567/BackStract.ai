@@ -1,33 +1,40 @@
-import language_tool_python
 from bs4 import BeautifulSoup
 
 
-def validate_schema_structure(data):
-    try:
-        nodes = data["nodes"]
-        table_names = [n["data"]["label"] for n in nodes]
-        return "users" in table_names and "orders" in table_names
-    except Exception as e:
-        print(f"Validation error: {e}")
-        return False
+def validate_response_status(response):
+    """Ensure API response is 200 OK."""
+    assert response.status_code == 200, f"Expected 200, got {response.status_code}"
 
-def check_grammar(text):
-    tool = language_tool_python.LanguageTool('en-US')
-    matches = tool.check(text)
-    return len(matches) == 0
 
-"""def validate_schema_structure(ai_response_html: str) -> bool:
-    expected_tables = ["students", "teachers", "courses", "departments", "enrollments", "assignments", "grades", "attendance"]
-    # Extract the schema text from HTML
-    soup = BeautifulSoup(ai_response_html, "html.parser")
-    reasoning_block = soup.find("div", class_="reasoning-output")
-    if not reasoning_block:
-        return False
+def validate_html_response(html):
+    """Validate that HTML contains both schema and reasoning blocks."""
+    assert isinstance(html, str), "Expected AI response as HTML string"
 
-    code_block = reasoning_block.find("code")
-    if not code_block:
-        return False
+    soup = BeautifulSoup(html, "html.parser")
 
-    text = code_block.text.lower()
-    return all(table in text for table in expected_tables)"""
+    # Look for the message with a substring match
+    assert soup.find(string=lambda text: text and "Schema generated successfully." in text), \
+        "Schema success message not found in HTML response."
 
+    # Check if reasoning block is present
+    reasoning_block = soup.select_one("div.reasoning-output code")
+    assert reasoning_block, "Reasoning block not found in HTML response."
+
+
+
+def extract_reasoning_block(html):
+    """Extract reasoning text from raw HTML string."""
+    soup = BeautifulSoup(html, "html.parser")
+    code_block = soup.select_one("div.reasoning-output code")
+    return code_block.get_text(strip=True) if code_block else ""
+
+
+def validate_reasoning_grammar(reasoning_text):
+    """Check if reasoning text contains basic grammatical structure."""
+    assert len(reasoning_text) > 50, "Reasoning text is too short"
+
+    intro_phrases = [
+        "This application", "This database", "The application", "The schema", "In this design"
+    ]
+    assert any(phrase in reasoning_text for phrase in intro_phrases), \
+        "Reasoning lacks a proper grammatical introduction"

@@ -1,0 +1,12 @@
+<p class='step-info'>Creating Collection ....</p>
+<p class='step-success'>✅ Collection &#x27;Global Store Collection_lxvu&#x27; created successfully!</p>
+<p class='step-info'>collection_id=coll_a1e915bf92834745ab51049e1938ff3c</p>
+<p class='step-info'>🧠 Attempting to generate database schema using Backstract AI ....</p>
+<p class='step-info'>📄 Prompt for Backstract AI generated.</p>
+<p class='step-info'>⏳ Backstract AI is generating schema for your application ......</p>
+<p class='step-success'>✅ Schema generated successfully.</p>
+<div class='reasoning-output'><strong>Reasoning:</strong><pre><code>This database design models a student registration portal. We start with a central &#x27;users&#x27; table to manage login credentials and basic identity, distinguishing between roles like &#x27;student&#x27; or &#x27;instructor&#x27;. Specific details for students are stored in the &#x27;students&#x27; table, linked back to &#x27;users&#x27;. Similarly, &#x27;instructors&#x27; hold instructor-specific information, also linked to &#x27;users&#x27;. &#x27;departments&#x27; organize academic areas. &#x27;courses&#x27; define the subjects offered, belonging to a &#x27;department&#x27;. &#x27;semesters&#x27; represent academic terms. To handle a specific course being taught in a particular semester by a specific instructor, we use &#x27;course_offerings&#x27;. This table connects &#x27;courses&#x27;, &#x27;semesters&#x27;, and &#x27;instructors&#x27;. The core of the registration process is the &#x27;registrations&#x27; table, which acts as a bridge, linking a &#x27;student&#x27; to a specific &#x27;course_offering&#x27; they signed up for. Finally, the &#x27;grades&#x27; table stores the academic outcome for each registration, linking directly to a specific entry in the &#x27;registrations&#x27; table. This structure separates general information (like course definitions) from specific instances (like a course offered in Fall 2024) and actions (like a student registering for that specific offering), making the system organized and scalable.</code></pre></div>
+<p class='step-info'>💾 Saving schema to your collection&#x27;s database...</p>
+<p class='step-success'>✅ Schema saved to database.</p>
+<p class='step-info'>⚙️ Attempting to generate API endpoints for your collection...</p>
+<p class='step-success'>✅ API endpoints generated successfully!</p>
